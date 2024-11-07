@@ -1,0 +1,116 @@
+###User registarion
+post http://localhost:4000/user-api/user
+Content-Type: application/json
+
+{
+    "usertype":"user",
+    "username":"reethu",
+    "password":"reethu",
+    "email":"reethu@gmail.com"
+
+}
+
+### User login req
+post http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "usertype":"user",
+    "username":"reethu",
+    "password":"reethu"
+
+}
+
+
+###Auther registration
+post http://localhost:4000/author-api/user
+Content-Type: application/json
+
+{
+    "usertype":"author",
+    "username":"madhu",
+    "password":"madhu",
+    "email":"madhu@gmail.com"
+
+}
+
+### author login request
+post http://localhost:4000/author-api/login
+Content-Type: application/json
+
+{
+    "usertype":"author",
+    "username":"madhu",
+    "password":"madhu"
+}
+
+
+### author add new atricle
+post http://localhost:4000/author-api/new-article
+Content-Type: application/json
+
+{
+    "articleId":"{{$timestamp}}",
+    "title":"Fundamentals of Java",
+    "category":"Programming",
+    "content":"tThis is Java Programming.It is invented by James goussling",
+    "dateOfCreation":"{{$datetime iso8601}}",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"madhu",
+    "comments":[ ],
+    "status":true
+
+}
+
+
+###Read articles by authors user name
+get http://localhost:4000/author-api/articles/madhu
+
+###edit article
+put http://localhost:4000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"1730724249",
+    "title":"Fundamentals of Java",
+    "category":"Programming",
+    "content":"This is Java Programming.It is invented by James goussling.There are some typos so i have modified",
+    "dateOfCreation":"2024-09-12T15:48:05.534Z",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"madhu",
+    "comments":[ ],
+    "status":true
+
+}
+
+###soft delete by ID
+
+put http://localhost:4000/author-api/article/1730724249
+Content-Type: application/json
+
+{
+    "articleId":"1730724249",
+    "title":"Fundamentals of Java",
+    "category":"Programming",
+    "content":"This is Java Programming.It is invented by James goussling.There are some typos so i have modified",
+    "dateOfCreation": "2024-09-12T15:48:05.534Z",
+    "dateOfModification":"2024-11-04T12:45:03.844Z",
+    "username":"madhu",
+    "comments":[ ],
+    "status":false
+
+}
+
+
+###Read articles of all author by users
+get http://localhost:4000/user-api/articles
+
+
+###write comment by user
+post http://localhost:4000/user-api/comment/1730724249
+Content-Type: application/json
+
+{
+    "username":"ravi",
+    "comments":"Its a good blog!!"
+}
