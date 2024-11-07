@@ -6,9 +6,8 @@ require("dotenv").config() //process.env
 
 //body parser midlleware
 app.use(exp.json()) 
-
-//place react build in http web server
-app.use(exp.static(path.join(__dirname,"../frontendfolder/build")))
+app.use(cors())
+console.log(process.env.SECRET_KEY)
 
 const mongoClient=require('mongodb').MongoClient
 //connect to mongodb server
