@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { axiosWithToken } from "../../axiosWithToken";
 
-
 function Article() {
   let { register, handleSubmit } = useForm();
   const { state } = useLocation(); //gets obj (from ArticlesByAuthor in navigate payload)
@@ -48,6 +47,8 @@ function Article() {
     }
   };
 
+  console.log(editedArticle);
+
   const editArticle = () => {
     setArticleEditStatus(true);
   };
@@ -79,6 +80,10 @@ function Article() {
     );
     if (res.data.message === "article deleted") {
       setArticleViewStatus(false);
+      setEditedArticle((prev) => ({
+        ...prev,
+        status: false,
+      }));
       console.log("Article restored, articleViewStatus set to false");
     }
   };
@@ -93,6 +98,10 @@ function Article() {
     console.log(res);
     if (res.data.message === "article restored") {
       setArticleViewStatus(true);
+      setEditedArticle((prev) => ({
+        ...prev,
+        status: true,
+      }));
       console.log("Article deleted, articleViewStatus set to true");
     } else {
       console.log("Failed to restore article, status not updated");
