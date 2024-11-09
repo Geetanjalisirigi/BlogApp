@@ -4,6 +4,7 @@ require("dotenv").config()
 const verifyToken=(req,res,next)=>{
     //get bearer token
     let bearerToken=req.headers.authorization;
+    
     if(!bearerToken){
         return res.send({message:"Unauthorised access ....Plz login"})
     }
@@ -14,6 +15,7 @@ const verifyToken=(req,res,next)=>{
     next()
     }
     catch(err){
+        console.log(err)
         next(err)
     }
 

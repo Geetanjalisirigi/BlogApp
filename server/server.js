@@ -9,6 +9,8 @@ app.use(exp.json())
 app.use(cors())
 console.log(process.env.SECRET_KEY)
 
+// asdf
+
 const mongoClient=require('mongodb').MongoClient
 //connect to mongodb server
 mongoClient.connect(process.env.DB_URL)
@@ -19,7 +21,7 @@ mongoClient.connect(process.env.DB_URL)
     const usersCollection=blogDbObj.collection('users')
     const authorsCollection=blogDbObj.collection('authors')
     const articlesCollection=blogDbObj.collection('articles')
-    //share collection objiects to APIs
+    //share collection objects to APIs
     app.set('usersCollection',usersCollection)
     app.set('authorsCollection',authorsCollection)
     app.set('articlesCollection',articlesCollection)
